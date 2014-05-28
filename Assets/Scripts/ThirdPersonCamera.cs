@@ -8,16 +8,14 @@ public class ThirdPersonCamera : MonoBehaviour {
 
 
 	[SerializeField]
-	private float distanceAway;
+	private float distanceAway = 4;
 	[SerializeField]
-	private float smooth;
-	[SerializeField]
-	private Transform followXForm;
+	private Transform playerTransform;
 	[SerializeField]
 	private Vector3 offset = new Vector3(0f, 1.5f,0f);
 
 	[SerializeField]
-	private float MAX_VERT_ANGLE = Mathf.PI - 0.01f;
+	private float MAX_VERT_ANGLE = Mathf.PI/2 - 0.01f;
 	[SerializeField]
 	private float MIN_VERT_ANGLE = 0.01f;
 	[SerializeField]
@@ -25,7 +23,7 @@ public class ThirdPersonCamera : MonoBehaviour {
 	[SerializeField]
 	private float MIN_DIST = 1;
 	[SerializeField]
-	private float mouseSesitivity = 0.001f;
+	private float mouseSesitivity = 0.1f;
 	private float vertAngle = 1;
 	private float horAngle = 0;
     [SerializeField]
@@ -48,7 +46,7 @@ public class ThirdPersonCamera : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         // get the player transform
-		followXForm = GameObject.FindWithTag("Player").transform;
+		playerTransform = GameObject.FindWithTag("Player").transform;
 	
 	}
 	
@@ -59,7 +57,7 @@ public class ThirdPersonCamera : MonoBehaviour {
 
 	void LateUpdate(){
 
-		Vector3 characterOffset = followXForm.position + offset;
+		Vector3 characterOffset = playerTransform.position + offset;
 
 		float inv = inverted ? -1 : 1;
 
@@ -74,7 +72,7 @@ public class ThirdPersonCamera : MonoBehaviour {
 		} else if (vertAngle <= MIN_VERT_ANGLE) {
 			vertAngle = MIN_VERT_ANGLE;
 		}
-		print (vertAngle);
+		//print (vertAngle);
 		if (horAngle >= 2*Mathf.PI) {
 			horAngle -= 2*Mathf.PI;
 		} else if (horAngle <= 0) {

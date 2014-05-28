@@ -21,25 +21,30 @@ public class StarioBehaviour : MonoBehaviour {
     void Update()
     {
         CharacterController controller = GetComponent<CharacterController>();
+		Transform charCamTransform = GameObject.FindGameObjectWithTag ("characterCam").transform;
         // sets player back to spawn, if falling below a certain threshold
         if (controller.transform.position.y <= -50)
             controller.transform.position = spawn;
         
-        // enables the player to walk and jump
-        if (controller.isGrounded)
+//        // enables the player to walk and jump
+       if (controller.isGrounded)
         {
             moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             moveDirection = transform.TransformDirection(moveDirection) * speed;
             if (Input.GetButton("Jump"))
                 moveDirection.y = jumpSpeed;
+		//print (moveDirection.ToString());
         }
 
         // enables the player to rotate the character (and it´s sight)
-        if (Input.GetAxis("Mouse X")!=0)
-            yRot += rotationSpeed * Input.GetAxis("Mouse X");
+//        if (Input.GetAxis("Mouse X")!=0)
+//            yRot += rotationSpeed * Input.GetAxis("Mouse X");
 
         // applies rotation to the character
-        transform.rotation = Quaternion.Euler(0, yRot, 0);
+		transform.rotation = Quaternion.Euler (0, charCamTransform.rotation.eulerAngles.y, 0);
+//		Vector3 rotation = new Vector3(0,charCamTransform.rotation.eulerAngles.y,0);
+//		transform.Rotate(rotation);
+		print (charCamTransform.rotation.eulerAngles.y);
         // applies gravity to the character
         moveDirection.y -= gravity * Time.deltaTime;
         // applies moving to the character
