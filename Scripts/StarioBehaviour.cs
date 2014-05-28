@@ -1,0 +1,48 @@
+﻿using UnityEngine;
+using System.Collections;
+
+// script simply needs to be attached to a gameObject, in order to work
+public class StarioBehaviour : MonoBehaviour {
+
+    public float speed = 5.0F;
+    public float jumpSpeed = 20.0F;
+    public float rotationSpeed = 10.0F;
+    public float gravity = 50.0F;
+    public Vector3 spawn = Vector3.zero;
+    private Vector3 moveDirection = Vector3.zero;
+    private float yRot;
+
+    // Use this for initialization
+    void Start()
+    {
+        spawn.Set(0.0F, 1.0F, 0.0F);
+    }
+
+    void Update()
+    {
+        CharacterController controller = GetComponent<CharacterController>();
+        // sets player back to spawn, if falling below a certain threshold
+        if (controller.transform.position.y <= -50)
+            controller.transform.position = spawn;
+        
+        // enables the player to walk and jump
+        if (controller.isGrounded)
+        {
+            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            moveDirection = transform.TransformDirection(moveDirection) * speed;
+            if (Input.GetButton("Jump"))
+                moveDirection.y = jumpSpeed;
+        }
+
+        // enables the player to rotate the character (and it´s sight)
+        if (Input.GetAxis("Mouse X")!=0)
+            yRot += rotationSpeed * Input.GetAxis("Mouse X");
+
+        // applies rotation to the character
+        transform.rotation = Quaternion.Euler(0, yRot, 0);
+        // applies gravity to the character
+        moveDirection.y -= gravity * Time.deltaTime;
+        // applies moving to the character
+        controller.Move(moveDirection * Time.deltaTime);
+    }
+}
