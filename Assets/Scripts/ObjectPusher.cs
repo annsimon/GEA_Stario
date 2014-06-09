@@ -17,31 +17,36 @@ public class ObjectPusher : MonoBehaviour {
 	}
 
 	// this script pushes all rigidbodies that the character touches
-	float pushPower = 2.0f;
+	public float pushPower = 2.0f;
 	// score for shard-collection
 	int myScore = 0;
 	
 	void OnControllerColliderHit (ControllerColliderHit hit)
 	{
-		Rigidbody body = hit.collider.attachedRigidbody;
-
 		// detection if Shard is hit
 		if (hit.collider.gameObject.tag == "Shard")
 		{
-			myScore+=1;
+			myScore += 1;
 			Destroy(hit.collider.gameObject);
-
+			
 			// score output
 			GUILayout.Label( "Score = " + myScore );
+			return;
 		}
 
-			
-		// no rigidbody
-		if (body == null || body.isKinematic) { return; }
-	
+		Rigidbody body = hit.collider.attachedRigidbody;
 
+		// no rigidbody
+		if (body == null || body.isKinematic) 
+			return;
+
+		// don't push raindrops
+		if (hit.gameObject.tag == "Raindrop")
+						return;
+		
 		// We dont want to push objects below us
-		if (hit.moveDirection.y < -0.3) { return; }
+		if (hit.moveDirection.y < -0.3) 
+			return;
 		
 		// Calculate push direction from move direction,
 		// we only push objects to the sides never up and down
@@ -52,10 +57,5 @@ public class ObjectPusher : MonoBehaviour {
 		
 		// Apply the push
 		body.velocity = pushPower * pushDir;
-	}
-
-	void OnGUI()
-	{
-		GUILayout.Label( "Score = " + myScore );
 	}
 }
