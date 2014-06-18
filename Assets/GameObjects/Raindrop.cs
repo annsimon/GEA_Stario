@@ -14,11 +14,13 @@ public class Raindrop : MonoBehaviour {
 
 	void OnCollisionEnter(Collision collision)
 	{
-		if( collision.gameObject.tag != "RainCloud" )
-			Hide();
-		// TODO: if collision with player, reduce his health here
-		//if (collision.gameObject.tag == "Player")
-		//	collider.gameObject.GetComponent<SCRIPT>().reduceHealth();
+		if (collision.gameObject.tag != "RainCloud") {
+			AudioSource.PlayClipAtPoint(audio.clip,transform.position);
+			Hide ();
+
+			// TODO: if collision with player, reduce his health here
+			//if (collision.gameObject.tag == "Player") {} 
+		}
 	}
 
 	public void Hide()

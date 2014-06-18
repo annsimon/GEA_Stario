@@ -53,6 +53,7 @@ public class RainCloud : MonoBehaviour {
 		if(timer <= 0)
 		{
 			Spawn();
+			AudioSource.PlayClipAtPoint(audio.clip,transform.position);
 			timer = spawnTime;
 		}
 	}

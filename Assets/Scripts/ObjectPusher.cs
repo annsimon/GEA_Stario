@@ -27,7 +27,8 @@ public class ObjectPusher : MonoBehaviour {
 		if (hit.collider.gameObject.tag == "Shard")
 		{
 			myScore += 1;
-			Destroy(hit.collider.gameObject);
+			AudioSource.PlayClipAtPoint(hit.collider.gameObject.audio.clip, hit.collider.transform.position);
+			Destroy(hit.collider.gameObject);	
 			
 			// score output
 			GUILayout.Label( "Score = " + myScore );
