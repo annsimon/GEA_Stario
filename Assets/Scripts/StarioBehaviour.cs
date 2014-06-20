@@ -21,7 +21,7 @@ public class StarioBehaviour : MonoBehaviour {
     void Update()
     {
         CharacterController controller = GetComponent<CharacterController>();
-		Transform charCamTransform = GameObject.FindGameObjectWithTag ("characterCam").transform;
+		Transform charCamTransform = Camera.main.transform;
         // sets player back to spawn, if falling below a certain threshold
         if (controller.transform.position.y <= -50)
             controller.transform.position = spawn;
