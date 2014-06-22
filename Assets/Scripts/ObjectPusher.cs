@@ -26,12 +26,10 @@ public class ObjectPusher : MonoBehaviour {
 		// detection if Shard is hit
 		if (hit.collider.gameObject.tag == "Shard")
 		{
-			myScore += 1;
+			HealthBar score = (HealthBar) GetComponent("HealthBar");
+			score.adjustScore(10);
 			AudioSource.PlayClipAtPoint(hit.collider.gameObject.audio.clip, hit.collider.transform.position);
 			Destroy(hit.collider.gameObject);
-			
-			// score output
-			GUILayout.Label( "Score = " + myScore );
 			return;
 		}
 

@@ -5,9 +5,11 @@ public class HealthBar : MonoBehaviour {
 
 	private int maxHealth = 4; 
 	public int curHealth = 4; 
+	public int score = 0;
 	private float healthBarLength;
 	public Texture2D heart;
 	public Texture2D emptyHeart;
+	public Texture2D shard;
 	// Use this for initialization
 	void Start () {
 		healthBarLength = Screen.width / 4; 
@@ -20,6 +22,10 @@ public class HealthBar : MonoBehaviour {
 	}
 
 	void OnGUI () {
+
+
+		GUI.DrawTexture (new Rect (Screen.width - 120, 5, 60, 54), shard);
+		GUI.Box (new Rect (Screen.width - 50, 17, 40, 30), ""+score);
 
 		if (curHealth < 4) {
 			if (curHealth < 3) {
@@ -87,4 +93,8 @@ public class HealthBar : MonoBehaviour {
 		healthBarLength = (Screen.width / 4) * (curHealth / (float)maxHealth);
 		
 	} 
+
+	public void adjustScore (int sc) {
+		score += sc;
+	}
 }
