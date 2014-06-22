@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: 815b76b4a95920044a91e6b8760b2822
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - heart: {fileID: 2800000, guid: 78a007f53c838134db63b4959c8a8d11, type: 3}
+  - emptyHeart: {fileID: 2800000, guid: 98eaffa6e7660054db42eb6cd37c4071, type: 3}
+  - shard: {fileID: 2800000, guid: 61ec1f1fa687c1349a9ee64cae023ef5, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 

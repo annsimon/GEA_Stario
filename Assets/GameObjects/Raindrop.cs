@@ -18,9 +18,12 @@ public class Raindrop : MonoBehaviour {
 						Hide ();
 			AudioSource.PlayClipAtPoint(gameObject.audio.clip, transform.position);
 				}
-		// TODO: if collision with player, reduce his health here
-		//if (collision.gameObject.tag == "Player")
-		//	collider.gameObject.GetComponent<SCRIPT>().reduceHealth();
+		//reduce health
+		if (collision.gameObject.tag == "Player") {
+			HealthBar health = (HealthBar) collision.gameObject.GetComponent("HealthBar");
+			health.adjustCurHealth(-1);
+
+		}
 	}
 
 	public void Hide()

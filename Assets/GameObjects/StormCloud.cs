@@ -10,7 +10,7 @@ public class StormCloud : MonoBehaviour {
 	public float visibleFor = 4.0f;
 	public float invisibleFor = 1.5f;
 	public int damage = 1;
-	public float damageTickTime = 0.4f;
+	public float damageTickTime = 1f;
 
 	// Use this for initialization
 	void Start () {
@@ -36,19 +36,24 @@ public class StormCloud : MonoBehaviour {
 
 	void OnTriggerEnter(Collider collider)
 	{
-		// TODO: let player lose health
-		//if (collider.gameObject.tag == "Player")
-		//	collider.gameObject.GetComponent<SCRIPT>().reduceHealth();
+		// let player lose health
+		if (collider.gameObject.tag == "Player")
+		{
+			HealthBar health = (HealthBar) collider.gameObject.GetComponent("HealthBar");
+			health.adjustCurHealth(-1);
+			damageTimer = damageTickTime;
+		}
 	}
 
 	void OnTriggerStay(Collider collider)
 	{
-		// TODO: let player lose more health (called once per frame, so use timer)
+		// let player lose more health (called once per frame, so use timer)
 		damageTimer -= Time.deltaTime;
-		//if (damageTimer <= 0 && collider.gameObject.tag == "Player")
-		//{
-		//	collider.gameObject.GetComponent<SCRIPT>().reduceHealth();
-		//	timer = damageTickTime;
-		//}
+		if (damageTimer <= 0 && collider.gameObject.tag == "Player")
+		{
+			HealthBar health = (HealthBar) collider.gameObject.GetComponent("HealthBar");
+			health.adjustCurHealth(-1);
+			damageTimer = damageTickTime;
+		}
 	}
 }

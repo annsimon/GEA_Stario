@@ -5,10 +5,11 @@ public class DataScript : MonoBehaviour {
 
 	// this script contains (partially static) variables for the global game state stuff we need
 	public static bool menuActive = true;
-	public static int score = 0;
+
 	public static int time = 0;
-	public static int health = 5;
-	public static int healthFull = 5;
+	public static int maxHealth = 4; 
+	public static int curHealth = 4; 
+	public static int score = 0;
 
 	// non-public
 	float timer = 1;

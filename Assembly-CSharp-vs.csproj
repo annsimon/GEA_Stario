@@ -46,13 +46,13 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\GUI\HudScript.cs" />
      <Compile Include="Assets\GUI\MenuScript.cs" />
      <Compile Include="Assets\GUI\SplashScreenScript.cs" />
      <Compile Include="Assets\GameObjects\RainCloud.cs" />
      <Compile Include="Assets\GameObjects\Raindrop.cs" />
      <Compile Include="Assets\GameObjects\StormCloud.cs" />
      <Compile Include="Assets\Scripts\DataScript.cs" />
+     <Compile Include="Assets\Scripts\HealthBar.cs" />
      <Compile Include="Assets\Scripts\ObjectPusher.cs" />
      <Compile Include="Assets\Scripts\StarioBehaviour.cs" />
      <Compile Include="Assets\Scripts\ThirdPersonCamera.cs" />
