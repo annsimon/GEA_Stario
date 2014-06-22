@@ -506,6 +506,7 @@ GameObject:
   - 143: {fileID: 284510856}
   - 114: {fileID: 284510855}
   - 114: {fileID: 284510854}
+  - 114: {fileID: 284510857}
   m_Layer: 0
   m_Name: StarioPrefab
   m_TagString: Player
@@ -571,6 +572,20 @@ CharacterController:
   m_SkinWidth: .0799999982
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 2, z: 0}
+--- !u!114 &284510857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 284510852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 815b76b4a95920044a91e6b8760b2822, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heart: {fileID: 2800000, guid: 78a007f53c838134db63b4959c8a8d11, type: 3}
+  emptyHeart: {fileID: 2800000, guid: 98eaffa6e7660054db42eb6cd37c4071, type: 3}
+  shard: {fileID: 2800000, guid: 61ec1f1fa687c1349a9ee64cae023ef5, type: 3}
 --- !u!95 &284510858
 Animator:
   serializedVersion: 2
@@ -2022,7 +2037,6 @@ GameObject:
   - 4: {fileID: 1736029126}
   - 114: {fileID: 1736029127}
   - 114: {fileID: 1736029129}
-  - 114: {fileID: 1736029128}
   m_Layer: 0
   m_Name: SceneDataAndMenu
   m_TagString: Untagged
@@ -2417,21 +2431,6 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
---- !u!114 &1736029128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400006, guid: 99892367599baf549aac188925e485a5,
-    type: 2}
-  m_PrefabInternal: {fileID: 1710816743}
-  m_GameObject: {fileID: 1736029125}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 815b76b4a95920044a91e6b8760b2822, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  heart: {fileID: 2800000, guid: 78a007f53c838134db63b4959c8a8d11, type: 3}
-  emptyHeart: {fileID: 2800000, guid: 98eaffa6e7660054db42eb6cd37c4071, type: 3}
-  shard: {fileID: 2800000, guid: 61ec1f1fa687c1349a9ee64cae023ef5, type: 3}
 --- !u!114 &1736029129
 MonoBehaviour:
   m_ObjectHideFlags: 0

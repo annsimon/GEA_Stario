@@ -15,14 +15,13 @@ public class Raindrop : MonoBehaviour {
 	void OnCollisionEnter(Collision collision)
 	{
 		if (collision.gameObject.tag != "RainCloud") {
-						Hide ();
+			Hide ();
 			AudioSource.PlayClipAtPoint(gameObject.audio.clip, transform.position);
-				}
+		}
 		//reduce health
 		if (collision.gameObject.tag == "Player") {
 			HealthBar health = (HealthBar) collision.gameObject.GetComponent("HealthBar");
 			health.adjustCurHealth(-1);
-
 		}
 	}
 
