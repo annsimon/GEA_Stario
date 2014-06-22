@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MenuScript : MonoBehaviour {
 	
-	public int levelID;
+	public int currentLevelID;
 
 	public GUIStyle background;
 	public GUIStyle backdrop;
@@ -24,7 +24,7 @@ public class MenuScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if(SplashScreenScript.menuActive)
+		if(DataScript.menuActive)
 			Time.timeScale = 0.0f;
 		else
 			Time.timeScale = 1.0f;
@@ -34,14 +34,14 @@ public class MenuScript : MonoBehaviour {
 	void Update () {
 		// open menu on esc
 		if(Input.GetKeyDown(KeyCode.Escape)){
-			SplashScreenScript.menuActive = true;
+			DataScript.menuActive = true;
 			Time.timeScale = 0.0f;
 		}
 	}
 
 	// Gui stuff is done here
 	void OnGUI () {
-		if (!SplashScreenScript.menuActive)
+		if (!DataScript.menuActive)
 			return;
 		// Determine the screen size
 		int h = Screen.height;
@@ -76,7 +76,7 @@ public class MenuScript : MonoBehaviour {
 		if (GUI.Button (new Rect (wc - 180, 
 		                          hc - boxHeight/2 + headerOffset + 0*buttonHeight + 0*buttonOffset, 
 		      				      360, 35), "Continue")) {
-			SplashScreenScript.menuActive = false;
+			DataScript.menuActive = false;
 			Time.timeScale = 1.0f;
 		}
 
@@ -84,15 +84,15 @@ public class MenuScript : MonoBehaviour {
 		if (GUI.Button (new Rect (wc - 180, 
 		                          hc - boxHeight/2 + headerOffset + 1*buttonHeight + 1*buttonOffset,
 		                          360, 35), "Restart Level")) {
-			SplashScreenScript.menuActive = false;
-			Application.LoadLevel(levelID);
+			DataScript.menuActive = false;
+			Application.LoadLevel(currentLevelID);
 		}
 
 		// button to restart the entire game
 		if (GUI.Button (new Rect (wc - 180, 
 		                          hc - boxHeight/2 + headerOffset + 2*buttonHeight + 2*buttonOffset,
 		                          360, 35), "New Game")) {
-			SplashScreenScript.menuActive = false;
+			DataScript.menuActive = false;
 			Application.LoadLevel(1);
 		}
 
@@ -145,14 +145,15 @@ public class MenuScript : MonoBehaviour {
 	void DrawCreditsMenu(int w, int h, int wc, int hc)
 	{
 		// credit text
-		string credits = "Prototype created for the lecture \n" +
-						 "Game Engine Architecture by \n" +
-						 "a \n" +
-						 "b \n" +
-						 "c \n" +
-						 "d \n" +
-						 "e \n \n \n"+
-						 "Supported by Acagamics (or something like that...)";
+		string credits = "Prototype for \n" +
+						 "Game Engine Architecture \n \n" +
+						 "Made by: \n \n" +
+						 "Alexander Roewer \n" +
+						 "Anne-Lena Simon \n" +
+						 "Manuel Kosta \n" +
+						 "Philipp Schladitz \n" +
+						 "Sebastian Rohde \n \n"+
+						 "Supported by Acagamics";
 
 		// background image
 		GUI.Box (new Rect (w - 256 - 30, h - 256 - 30, 256, 256), "", imageCredits);

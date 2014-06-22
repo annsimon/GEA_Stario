@@ -44,7 +44,7 @@ public class StarioBehaviour : MonoBehaviour {
 		transform.rotation = Quaternion.Euler (0, charCamTransform.rotation.eulerAngles.y, 0);
 //		Vector3 rotation = new Vector3(0,charCamTransform.rotation.eulerAngles.y,0);
 //		transform.Rotate(rotation);
-		print (charCamTransform.rotation.eulerAngles.y);
+		//print (charCamTransform.rotation.eulerAngles.y);
         // applies gravity to the character
         moveDirection.y -= gravity * Time.deltaTime;
         // applies moving to the character

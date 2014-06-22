@@ -18,20 +18,15 @@ public class ObjectPusher : MonoBehaviour {
 
 	// this script pushes all rigidbodies that the character touches
 	public float pushPower = 2.0f;
-	// score for shard-collection
-	int myScore = 0;
 	
 	void OnControllerColliderHit (ControllerColliderHit hit)
 	{
 		// detection if Shard is hit
 		if (hit.collider.gameObject.tag == "Shard")
 		{
-			myScore += 1;
+			DataScript.score += 1;
 			AudioSource.PlayClipAtPoint(hit.collider.gameObject.audio.clip, hit.collider.transform.position);
 			Destroy(hit.collider.gameObject);
-			
-			// score output
-			GUILayout.Label( "Score = " + myScore );
 			return;
 		}
 

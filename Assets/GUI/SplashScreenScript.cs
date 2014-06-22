@@ -6,8 +6,6 @@ public class SplashScreenScript : MonoBehaviour {
 	public GUIStyle backdrop;
 	public GUIStyle image;
 
-	public static bool menuActive = true;
-
 	// Use this for initialization
 	void Start () {
 		StartCoroutine(StartGame(3.0f));
@@ -25,12 +23,11 @@ public class SplashScreenScript : MonoBehaviour {
 		int w = Screen.width;
 		int hc = h / 2;
 		int wc = w / 2;
-		
 		// backdrop
 		GUI.Box(new Rect(0,0,w,h), "", backdrop);
 		
 		// splash screen image
-		GUI.Box(new Rect(w-256-30,h-256-30,256,256), "", image);
+		GUI.Box(new Rect(wc-256,hc-256,512,512), "", image);
 	}
 
 	IEnumerator StartGame(float delay)
