@@ -51,10 +51,12 @@
      <Compile Include="Assets\GameObjects\RainCloud.cs" />
      <Compile Include="Assets\GameObjects\Raindrop.cs" />
      <Compile Include="Assets\GameObjects\StormCloud.cs" />
+     <Compile Include="Assets\Health.cs" />
      <Compile Include="Assets\Scripts\HealthBar.cs" />
      <Compile Include="Assets\Scripts\ObjectPusher.cs" />
      <Compile Include="Assets\Scripts\StarioBehaviour.cs" />
      <Compile Include="Assets\Scripts\ThirdPersonCamera.cs" />
+     <Compile Include="Assets\Test.cs" />
      <Compile Include="Assets\UnityAssetStore\torch\scene\script\TorchSlider.cs" />
      <Compile Include="Assets\UnityAssetStore\torch\scene\script\Torchslider2.cs" />
      <Compile Include="Assets\UnityAssetStore\torch\scripts\Torchelight.cs" />
@@ -64,6 +66,7 @@
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Miscellaneous Shaders\Mobile Background.shader" />
      <None Include="Assets\Standard Assets\Projectors\Sources\Shaders\Projector Multiply.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Vertex Colored Shaders\Mobile Transparent Vertex Color.shader" />
+     <None Include="Assets\GameObjects\cloud\Project.xml" />
      <None Include="Assets\Standard Assets\Tessellation Shaders\BumpedSpecularSmooth.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Miscellaneous Shaders\Mobile Detail.shader" />
      <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
