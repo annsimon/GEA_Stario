@@ -37,7 +37,7 @@ public class StormCloud : MonoBehaviour {
 	void OnTriggerEnter(Collider collider)
 	{
 		// let player lose health
-		if (collider.gameObject.tag == "Player")
+		if (collider.gameObject.tag == "Player" && this.gameObject.renderer.enabled)
 		{
 			HealthBar health = (HealthBar) collider.gameObject.GetComponent("HealthBar");
 			health.adjustCurHealth(-1);
@@ -49,7 +49,7 @@ public class StormCloud : MonoBehaviour {
 	{
 		// let player lose more health (called once per frame, so use timer)
 		damageTimer -= Time.deltaTime;
-		if (damageTimer <= 0 && collider.gameObject.tag == "Player")
+		if (damageTimer <= 0 && collider.gameObject.tag == "Player" && this.gameObject.renderer.enabled)
 		{
 			HealthBar health = (HealthBar) collider.gameObject.GetComponent("HealthBar");
 			health.adjustCurHealth(-1);
