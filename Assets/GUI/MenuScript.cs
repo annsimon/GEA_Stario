@@ -21,6 +21,7 @@ public class MenuScript : MonoBehaviour {
 	int buttonOffset = 5;
 	int headerOffset = 40;
 	int boxHeight;
+	float inGameVolume = 1.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -57,7 +58,7 @@ public class MenuScript : MonoBehaviour {
 		GUI.Box(new Rect(0,0,w,h), "", backdrop);
 
 		if (optionsMenuActive)
-			DrawOptionsMenus (w,h,wc,hc);
+			DrawOptionsMenus (w, h, wc, hc);
 		else if (creditsMenuActive)
 			DrawCreditsMenu (w,h,wc,hc);
 		else
@@ -125,6 +126,8 @@ public class MenuScript : MonoBehaviour {
 						"Make Stario jump: Space \n" +
 						"Move Browser: - \n" +
 						"do w/e else is missing";
+	
+
 		// background image
 		GUI.Box (new Rect (w - 256 - 30, h - 256 - 30, 256, 256), "", imageSettings);
 		
@@ -133,7 +136,14 @@ public class MenuScript : MonoBehaviour {
 
 		// Text
 		GUI.Box (new Rect (wc - 200 + 40, hc - boxHeight/2 + 40, 400, boxHeight), controls, text);
-		
+
+		// sound slider
+		GUI.Box (new Rect (wc - 200 + 40, h - 256 - 50, 400, boxHeight), "Volume", text);
+		GUI.Box (new Rect (wc - 200 + 40, h - 256 - 18, 400, boxHeight), "Min", text);
+		GUI.Box (new Rect (wc - 200 + 245, h - 256 - 18, 400, boxHeight), "Max", text);
+		inGameVolume = GUI.HorizontalSlider (new Rect (wc - 159, h - 256 - 30, 230, 10), inGameVolume, 0.0f, 1.0f);
+		AudioListener.volume = inGameVolume;
+
 		// button to start the game
 		if (GUI.Button (new Rect (wc - 180, 
 		                          hc - boxHeight/2 + headerOffset + 5*buttonHeight + 5*buttonOffset,
