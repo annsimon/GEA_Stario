@@ -42,6 +42,7 @@ public class StormCloud : MonoBehaviour {
 			HealthBar health = (HealthBar) collider.gameObject.GetComponent("HealthBar");
 			health.adjustCurHealth(-1);
 			damageTimer = damageTickTime;
+			AudioSource.PlayClipAtPoint(gameObject.audio.clip, transform.position);
 		}
 	}
 
@@ -54,6 +55,7 @@ public class StormCloud : MonoBehaviour {
 			HealthBar health = (HealthBar) collider.gameObject.GetComponent("HealthBar");
 			health.adjustCurHealth(-1);
 			damageTimer = damageTickTime;
+			AudioSource.PlayClipAtPoint(gameObject.audio.clip, transform.position);
 		}
 	}
 }
