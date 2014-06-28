@@ -25,10 +25,16 @@ public class ObjectPusher : MonoBehaviour {
 		if (hit.collider.gameObject.tag == "Shard")
 		{
 			HealthBar score = (HealthBar) GetComponent("HealthBar");
-			score.adjustScore(10);
+			score.adjustScore(1);
 			AudioSource.PlayClipAtPoint(hit.collider.gameObject.audio.clip, hit.collider.transform.position);
 			Destroy(hit.collider.gameObject);
 			return;
+		}
+
+		// goal reached?
+		if (hit.collider.gameObject.tag == "Goal") {
+			DataScript.gameOver = false;
+			Application.LoadLevel(DataScript.gameEndID);
 		}
 
 		Rigidbody body = hit.collider.attachedRigidbody;

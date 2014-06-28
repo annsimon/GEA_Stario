@@ -33,6 +33,7 @@ public class SplashScreenScript : MonoBehaviour {
 	IEnumerator StartGame(float delay)
 	{
 		yield return new WaitForSeconds(delay);
-		Application.LoadLevel(1);
+		DataScript.menuActive = true;
+		Application.LoadLevel(DataScript.firstLevelID);
 	}
 }

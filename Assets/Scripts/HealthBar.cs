@@ -10,7 +10,6 @@ public class HealthBar : MonoBehaviour {
 	public Texture2D shard;
 	// Use this for initialization
 	void Start () {
-		healthBarLength = Screen.width / 4; 
 	}
 	
 	// Update is called once per frame
@@ -33,40 +32,30 @@ public class HealthBar : MonoBehaviour {
 		// health
 		int curHealth = DataScript.curHealth;
 
-		if (curHealth < 4) {
-			if (curHealth < 3) {
-				if (curHealth < 2) {
-					if (curHealth < 1) {
-						GUI.DrawTexture (new Rect (0, 0, 50, 50), emptyHeart);
-						GUI.DrawTexture (new Rect (50, 0, 50, 50), emptyHeart);
-						GUI.DrawTexture (new Rect (100, 0, 50, 50), emptyHeart);
-						GUI.DrawTexture (new Rect (150, 0, 50, 50), emptyHeart);
-						GUI.contentColor = Color.red;
-						GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, Screen.width - 20, Screen.height - 50), "Game Over");
-					}else{
-						GUI.DrawTexture (new Rect (0, 0, 50, 50), heart);
-						GUI.DrawTexture (new Rect (50, 0, 50, 50), emptyHeart);
-						GUI.DrawTexture (new Rect (100, 0, 50, 50), emptyHeart);
-						GUI.DrawTexture (new Rect (150, 0, 50, 50), emptyHeart);
-					}
-				}else{
-					GUI.DrawTexture (new Rect (0, 0, 50, 50), heart);
-					GUI.DrawTexture (new Rect (50, 0, 50, 50), heart);
-					GUI.DrawTexture (new Rect (100, 0, 50, 50), emptyHeart);
-					GUI.DrawTexture (new Rect (150, 0, 50, 50), emptyHeart);
-				}
-			}else{
-				GUI.DrawTexture (new Rect (0, 0, 50, 50), heart);
-				GUI.DrawTexture (new Rect (50, 0, 50, 50), heart);
-				GUI.DrawTexture (new Rect (100, 0, 50, 50), heart);
-				GUI.DrawTexture (new Rect (150, 0, 50, 50), emptyHeart);
-			}
-		}else{
+		if (curHealth < 2) {
+			GUI.DrawTexture (new Rect (0, 0, 50, 50), heart);
+			GUI.DrawTexture (new Rect (50, 0, 50, 50), emptyHeart);
+			GUI.DrawTexture (new Rect (100, 0, 50, 50), emptyHeart);
+			GUI.DrawTexture (new Rect (150, 0, 50, 50), emptyHeart);
+		}
+		else if (curHealth < 3){
+			GUI.DrawTexture (new Rect (0, 0, 50, 50), heart);
+			GUI.DrawTexture (new Rect (50, 0, 50, 50), heart);
+			GUI.DrawTexture (new Rect (100, 0, 50, 50), emptyHeart);
+			GUI.DrawTexture (new Rect (150, 0, 50, 50), emptyHeart);
+		}
+		else if (curHealth < 4){
+			GUI.DrawTexture (new Rect (0, 0, 50, 50), heart);
+			GUI.DrawTexture (new Rect (50, 0, 50, 50), heart);
+			GUI.DrawTexture (new Rect (100, 0, 50, 50), heart);
+			GUI.DrawTexture (new Rect (150, 0, 50, 50), emptyHeart);
+		}
+		else{
 			GUI.DrawTexture (new Rect (0, 0, 50, 50), heart);
 			GUI.DrawTexture (new Rect (50, 0, 50, 50), heart);
 			GUI.DrawTexture (new Rect (100, 0, 50, 50), heart);
 			GUI.DrawTexture (new Rect (150, 0, 50, 50), heart);
-				}
+		}
 
 		// code for healthbar instead of hearts
 		/*if (curHealth == 0) {
@@ -94,8 +83,12 @@ public class HealthBar : MonoBehaviour {
 		
 		if(DataScript.maxHealth < 1)
 			DataScript.maxHealth = 1;
-		
-		healthBarLength = (Screen.width / 4) * (DataScript.curHealth / (float)DataScript.maxHealth);
+
+		if( DataScript.curHealth == 0 )
+		{
+			DataScript.gameOver = true;
+			Application.LoadLevel(DataScript.gameEndID);
+		}
 		
 	} 
 

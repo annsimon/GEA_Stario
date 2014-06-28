@@ -21,7 +21,6 @@ public class MenuScript : MonoBehaviour {
 	int buttonOffset = 5;
 	int headerOffset = 40;
 	int boxHeight;
-	float inGameVolume = 1.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -29,6 +28,10 @@ public class MenuScript : MonoBehaviour {
 			Time.timeScale = 0.0f;
 		else
 			Time.timeScale = 1.0f;
+
+		DataScript.currentLevelID = currentLevelID;
+
+		DataScript.volume = AudioListener.volume;
 	}
 	
 	// Update is called once per frame
@@ -139,12 +142,12 @@ public class MenuScript : MonoBehaviour {
 
 		// sound slider
 		GUI.Box (new Rect (wc - 200 + 40, h - 256 - 50, 400, boxHeight), "Volume", text);
-		GUI.Box (new Rect (wc - 200 + 40, h - 256 - 18, 400, boxHeight), "Min", text);
-		GUI.Box (new Rect (wc - 200 + 245, h - 256 - 18, 400, boxHeight), "Max", text);
-		inGameVolume = GUI.HorizontalSlider (new Rect (wc - 159, h - 256 - 30, 230, 10), inGameVolume, 0.0f, 1.0f);
-		AudioListener.volume = inGameVolume;
+		GUI.Box (new Rect (wc - 200 + 40, h - 256 - 18, 20, boxHeight), "Min", text);
+		GUI.Box (new Rect (wc - 200 + 333, h - 256 - 18, 20, boxHeight), "Max", text);
+		DataScript.volume = GUI.HorizontalSlider (new Rect (wc - 160, h - 256 - 30, 320, 10), DataScript.volume, 0.0f, 1.0f);
+		AudioListener.volume = DataScript.volume;
 
-		// button to start the game
+		// button to go back
 		if (GUI.Button (new Rect (wc - 180, 
 		                          hc - boxHeight/2 + headerOffset + 5*buttonHeight + 5*buttonOffset,
 		                          360, 35), "Back")) {
@@ -174,7 +177,7 @@ public class MenuScript : MonoBehaviour {
 		// Text
 		GUI.Box (new Rect (wc - 200 + 40, hc - boxHeight/2 + 40, 400, boxHeight), credits, text);
 		
-		// button to start the game
+		// button to go back
 		if (GUI.Button (new Rect (wc - 180, 
 		                          hc - boxHeight/2 + headerOffset + 5*buttonHeight + 5*buttonOffset,
 		                          360, 35), "Back")) {

@@ -1512,7 +1512,7 @@ GameObject:
   - 23: {fileID: 1643134830}
   m_Layer: 0
   m_Name: Stariotype
-  m_TagString: Untagged
+  m_TagString: Goal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1646,6 +1646,10 @@ Prefab:
     - target: {fileID: 400000, guid: 99892367599baf549aac188925e485a5, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 99892367599baf549aac188925e485a5, type: 2}
+      propertyPath: currentLevelID
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -2034,7 +2038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64e5b7f3943dbb24dadf6d2438644ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLevelID: 1
+  currentLevelID: 2
   background:
     m_Name: 
     m_Normal:
