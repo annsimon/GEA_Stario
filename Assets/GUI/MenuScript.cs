@@ -97,7 +97,7 @@ public class MenuScript : MonoBehaviour {
 		                          hc - boxHeight/2 + headerOffset + 2*buttonHeight + 2*buttonOffset,
 		                          360, 35), "New Game")) {
 			DataScript.menuActive = false;
-			Application.LoadLevel(1);
+			Application.LoadLevel(DataScript.firstLevelID);
 		}
 
 		// button to enter the options menu (and control reference)
@@ -125,10 +125,15 @@ public class MenuScript : MonoBehaviour {
 	void DrawOptionsMenus(int w, int h, int wc, int hc)
 	{
 		// controls text
-		string controls = "Move Stario: W, A, S, D \n" +
-						"Make Stario jump: Space \n" +
-						"Move Browser: - \n" +
-						"do w/e else is missing";
+		string controls = "<b>Stario:</b> \n" +
+						"Move: W, A, S, D \n" +
+						"Jump: Space \n" +
+						"Camera: Mouse (move), mousewheel (zoom) \n \n" +
+						"<b>Browser:</b> \n" +
+						"Move: Left gamepad analog stick \n" +
+						"Jump: A      Interact: X \n" +
+						"Camera: Right gamepad analog stick \n" +
+						"Zoom: Gamepad triggers (TL, TR)";
 	
 
 		// background image
@@ -138,13 +143,13 @@ public class MenuScript : MonoBehaviour {
 		GUI.Box (new Rect (wc - 200, hc - boxHeight/2, 400, boxHeight), "Settings", background);
 
 		// Text
-		GUI.Box (new Rect (wc - 200 + 40, hc - boxHeight/2 + 40, 400, boxHeight), controls, text);
+		GUI.Box (new Rect (wc - 200 + 40, hc - boxHeight/2 + 33, 400, boxHeight), controls, text);
 
 		// sound slider
-		GUI.Box (new Rect (wc - 200 + 40, h - 256 - 50, 400, boxHeight), "Volume", text);
-		GUI.Box (new Rect (wc - 200 + 40, h - 256 - 18, 20, boxHeight), "Min", text);
-		GUI.Box (new Rect (wc - 200 + 333, h - 256 - 18, 20, boxHeight), "Max", text);
-		DataScript.volume = GUI.HorizontalSlider (new Rect (wc - 160, h - 256 - 30, 320, 10), DataScript.volume, 0.0f, 1.0f);
+		GUI.Box (new Rect (wc - 200 + 40, h - 256 - 10, 400, boxHeight), "<b>Volume:</b>", text);
+		GUI.Box (new Rect (wc - 200 + 40, h - 256 + 17, 20, boxHeight), "Min", text);
+		GUI.Box (new Rect (wc - 200 + 333, h - 256 + 17, 20, boxHeight), "Max", text);
+		DataScript.volume = GUI.HorizontalSlider (new Rect (wc - 160, h - 256 + 5, 320, 10), DataScript.volume, 0.0f, 1.0f);
 		AudioListener.volume = DataScript.volume;
 
 		// button to go back
@@ -159,13 +164,13 @@ public class MenuScript : MonoBehaviour {
 	{
 		// credit text
 		string credits = "Prototype for \n" +
-						 "Game Engine Architecture \n \n" +
+						 "<b>Game Engine Architecture</b> \n \n" +
 						 "Made by: \n \n" +
-						 "Alexander Roewer \n" +
+						 "<b>Alexander Roewer \n" +
 						 "Anne-Lena Simon \n" +
 						 "Manuel Kosta \n" +
 						 "Philipp Schladitz \n" +
-						 "Sebastian Rohde \n \n"+
+						 "Sebastian Rohde</b> \n \n"+
 						 "Supported by Acagamics";
 
 		// background image
