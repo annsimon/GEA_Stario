@@ -55,7 +55,7 @@
      <Compile Include="Assets\GameObjects\SpawnPointRain.cs" />
      <Compile Include="Assets\GameObjects\SpawnPointStorm.cs" />
      <Compile Include="Assets\GameObjects\StormCloud.cs" />
-     <Compile Include="Assets\Scripts\BrowserBehaviorTemp.cs" />
+     <Compile Include="Assets\Scripts\BrowserBehavior.cs" />
      <Compile Include="Assets\Scripts\DataScript.cs" />
      <Compile Include="Assets\Scripts\HealthBar.cs" />
      <Compile Include="Assets\Scripts\ObjectPusher.cs" />

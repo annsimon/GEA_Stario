@@ -6,6 +6,8 @@ using System.Collections;
 
 public class ThirdPersonCamera : MonoBehaviour {
 
+	public GameObject player;
+	public bool isStario = true;
 
 	[SerializeField]
 	private float distanceAway = 4;
@@ -46,7 +48,7 @@ public class ThirdPersonCamera : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         // get the player transform
-		playerTransform = GameObject.FindWithTag("Player").transform;
+		playerTransform = player.transform;
 	
 	}
 	
@@ -61,10 +63,21 @@ public class ThirdPersonCamera : MonoBehaviour {
 
 		float inv = inverted ? -1 : 1;
 
+		float distOffset = 0;
+
         // get Inputs
-		float distOffset = -Input.GetAxis ("Mouse ScrollWheel");
-		vertAngle += inv * mouseSesitivity * Input.GetAxis ("Mouse Y");
-		horAngle -= mouseSesitivity * Input.GetAxis ("Mouse X");
+		if (isStario) {
+			distOffset = -Input.GetAxis ("Mouse ScrollWheel");
+			vertAngle += inv * mouseSesitivity * Input.GetAxis ("Mouse Y");
+			horAngle -= mouseSesitivity * Input.GetAxis ("Mouse X");
+		}
+		else
+		{
+			// browser input here
+			distOffset = Input.GetAxis("BrowserZoom");
+			vertAngle += inv * mouseSesitivity * Input.GetAxis ("BrowserCamY");
+			horAngle -= mouseSesitivity * Input.GetAxis ("BrowserCamX");
+		}
 
         // clamp rotation angles and distance
 		if (vertAngle >= MAX_VERT_ANGLE) {
