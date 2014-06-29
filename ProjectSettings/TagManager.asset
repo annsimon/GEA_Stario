@@ -8,6 +8,8 @@ TagManager:
   - Raindrop
   - RainCloud
   - Shard
+  - SpawnPoint
+  - HealthShard
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

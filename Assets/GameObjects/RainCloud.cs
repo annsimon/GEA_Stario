@@ -10,6 +10,8 @@ public class RainCloud : MonoBehaviour {
 	public float offset = 0.5f;
 	public int totalRaindrops = 5;
 
+	public bool activated = true;
+
 	float timer;
 	int currentID;
 	Rigidbody[] raindrops;
@@ -19,7 +21,7 @@ public class RainCloud : MonoBehaviour {
 	void Start() 
 	{
 		raindrops = new Rigidbody[totalRaindrops];
-		timer = spawnTime;
+		timer = 0;
 		spawnPoint = transform.position + offset*transform.forward;
 	}
 	
@@ -33,7 +35,7 @@ public class RainCloud : MonoBehaviour {
 			raindrops[currentID].velocity = transform.forward * speed;
 			raindrops[currentID].GetComponent<Raindrop>().Show();
 		} 
-		else 
+		else
 		{
 			//Instantiate the object
 			Rigidbody raindropClone = (Rigidbody) Instantiate(raindrop, spawnPoint, transform.rotation);
@@ -48,13 +50,16 @@ public class RainCloud : MonoBehaviour {
 
 	void Update() 
 	{
-		timer -= Time.deltaTime;
-
-		if(timer <= 0)
+		if( activated )
 		{
-			AudioSource.PlayClipAtPoint(gameObject.audio.clip, transform.position);
-			Spawn();
-			timer = spawnTime;
+			timer -= Time.deltaTime;
+
+			if(timer <= 0)
+			{
+				AudioSource.PlayClipAtPoint(gameObject.audio.clip, transform.position);
+				Spawn();
+				timer = spawnTime;
+			}
 		}
 	}
 }

@@ -12,6 +12,8 @@ public class StormCloud : MonoBehaviour {
 	public int damage = 1;
 	public float damageTickTime = 1f;
 
+	public bool activated = true;
+
 	// Use this for initialization
 	void Start () {
 		timer = invisibleFor;
@@ -21,23 +23,26 @@ public class StormCloud : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		timer -= Time.deltaTime;
-		// change visibility state
-		if(timer <= 0)
+		if(activated)
 		{
-			bool active = this.gameObject.renderer.enabled;
-			this.gameObject.renderer.enabled = !active;
-			if(active)
-				timer = invisibleFor;
-			else
-				timer = visibleFor;
+			timer -= Time.deltaTime;
+			// change visibility state
+			if(timer <= 0)
+			{
+				bool active = this.gameObject.renderer.enabled;
+				this.gameObject.renderer.enabled = !active;
+				if(active)
+					timer = invisibleFor;
+				else
+					timer = visibleFor;
+			}
 		}
 	}
 
 	void OnTriggerEnter(Collider collider)
 	{
 		// let player lose health
-		if (collider.gameObject.tag == "Player" && this.gameObject.renderer.enabled)
+		if (activated && collider.gameObject.tag == "Player" && this.gameObject.renderer.enabled)
 		{
 			HealthBar health = (HealthBar) collider.gameObject.GetComponent("HealthBar");
 			health.adjustCurHealth(-1);
@@ -48,14 +53,17 @@ public class StormCloud : MonoBehaviour {
 
 	void OnTriggerStay(Collider collider)
 	{
-		// let player lose more health (called once per frame, so use timer)
-		damageTimer -= Time.deltaTime;
-		if (damageTimer <= 0 && collider.gameObject.tag == "Player" && this.gameObject.renderer.enabled)
+		if( activated )
 		{
-			HealthBar health = (HealthBar) collider.gameObject.GetComponent("HealthBar");
-			health.adjustCurHealth(-1);
-			damageTimer = damageTickTime;
-			AudioSource.PlayClipAtPoint(gameObject.audio.clip, transform.position);
+			// let player lose more health (called once per frame, so use timer)
+			damageTimer -= Time.deltaTime;
+			if ( damageTimer <= 0 && collider.gameObject.tag == "Player" && this.gameObject.renderer.enabled)
+			{
+				HealthBar health = (HealthBar) collider.gameObject.GetComponent("HealthBar");
+				health.adjustCurHealth(-1);
+				damageTimer = damageTickTime;
+				AudioSource.PlayClipAtPoint(gameObject.audio.clip, transform.position);
+			}
 		}
 	}
 }

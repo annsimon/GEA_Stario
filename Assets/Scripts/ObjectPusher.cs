@@ -30,6 +30,14 @@ public class ObjectPusher : MonoBehaviour {
 			Destroy(hit.collider.gameObject);
 			return;
 		}
+		if (hit.collider.gameObject.tag == "HealthShard")
+		{
+			HealthBar health = (HealthBar) GetComponent("HealthBar");
+			health.adjustCurHealth(1);
+			AudioSource.PlayClipAtPoint(hit.collider.gameObject.audio.clip, hit.collider.transform.position);
+			Destroy(hit.collider.gameObject);
+			return;
+		}
 
 		// goal reached?
 		if (hit.collider.gameObject.tag == "Goal") {
