@@ -38,6 +38,13 @@ public class ObjectPusher : MonoBehaviour {
 			Destroy(hit.collider.gameObject);
 			return;
 		}
+		if (hit.collider.gameObject.tag == "SpeedShard")
+		{
+			StarioBehaviour stario = (StarioBehaviour) GetComponent("StarioBehaviour");
+			stario.StartSprint();
+			Destroy(hit.collider.gameObject);
+			return;
+		}
 
 		// goal reached?
 		if (hit.collider.gameObject.tag == "Goal") {

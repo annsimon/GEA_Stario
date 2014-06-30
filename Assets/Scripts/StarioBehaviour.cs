@@ -5,6 +5,8 @@ using System.Collections;
 public class StarioBehaviour : MonoBehaviour {
 
     public float speed = 5.0F;
+	public float sprintSpeed = 7.5f;
+	public float sprintDuration = 6.0f;
     public float jumpSpeed = 20.0F;
     public float rotationSpeed = 10.0F;
     public float gravity = 50.0F;
@@ -12,14 +14,23 @@ public class StarioBehaviour : MonoBehaviour {
     private Vector3 moveDirection = Vector3.zero;
     private float yRot;
 
+	private float effectiveSpeed;
+	private float speedTimer = 0;
+
     // Use this for initialization
     void Start()
     {
         spawn.Set(0.0F, 1.0F, 0.0F);
+		effectiveSpeed = speed;
     }
 
     void Update()
     {
+		if(speedTimer > 0)
+			speedTimer -= Time.deltaTime;
+		else
+			effectiveSpeed = speed;
+
         CharacterController controller = GetComponent<CharacterController>();
 		Transform charCamTransform = GameObject.FindGameObjectWithTag ("starioCam").transform;
         // sets player back to spawn, if falling below a certain threshold
@@ -30,7 +41,7 @@ public class StarioBehaviour : MonoBehaviour {
        if (controller.isGrounded)
         {
             moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            moveDirection = transform.TransformDirection(moveDirection) * speed;
+            moveDirection = transform.TransformDirection(moveDirection) * effectiveSpeed;
             if (Input.GetButton("Jump"))
                 moveDirection.y = jumpSpeed;
 		//print (moveDirection.ToString());
@@ -50,4 +61,10 @@ public class StarioBehaviour : MonoBehaviour {
         // applies moving to the character
         controller.Move(moveDirection * Time.deltaTime);
     }
+
+	public void StartSprint()
+	{
+		effectiveSpeed = sprintSpeed;
+		speedTimer = sprintDuration;
+	}
 }
